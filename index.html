@@ -1,0 +1,87 @@
+<!doctype html>
+<html lang="en-US">
+
+<head>
+
+  <title>MQ Reporting</title>
+
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="chrome=1">
+
+  <meta name="description" content="Development of IBM Message Queue Reporting tool" />
+  <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no">
+
+  <base href="https://likarajo.github.io/mqreporting/" />
+  <link rel="canonical" href="https://likarajo.github.io/mqreporting/" />
+
+  <link rel="icon" type="image/x-icon" href="assets/favicon.ico" />
+
+  <link rel="stylesheet" href="assets/style.css">
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.7.1/jquery.min.js"></script>
+  <script src="https://buttons.github.io/buttons.js" async defer></script>
+
+</head>
+
+<body>
+
+  <div class="wrapper">
+
+    <header>
+      <h1>mqreporting</h1>
+      <p>Development of IBM Message Queue Reporting tool</p>
+      <div id="banner">
+        <a class="github-button" aria-label="View likarajo/mqreporting on GitHub" href="https://github.com/likarajo/mqreporting" target="_blank" data-size="large">View on Github</a>
+        <br>
+        <a class="github-button" aria-label="Fork likarajo/mqreporting on GitHub" href="https://github.com/likarajo/mqreporting/fork" target="_blank" data-icon="octicon-repo-forked" data-show-count="true">Fork</a>
+        <a class="github-button" aria-label="Star likarajo/mqreporting on GitHub" href="https://github.com/likarajo/mqreporting" target="_blank" data-icon="octicon-star" data-show-count="true">Star</a>
+      </div>
+    </header>
+
+    <div id="home">
+      <!--nav>
+      </nav-->
+
+      <section>
+
+        <h2 id="background">Background:</h2>
+
+        <p>The application that we support in our project is connected to multiple other external applications via message queues. Those external applications are downstream applications, which either receive feed from the central application, or can communicate
+          with the central application on request-reply basis via message queues (IBM Websphere MQ). Whenever any message fails to be processed at the application end, the same goes into the corresponding Backout message queue, waiting to be reprocessed.
+          This gives rise to the need for the same to be reprocessed manually. Therefore, a report needs to be generated which lists the backout MQ names that contain unprocessed messages along with the server in which it is, so that support team member
+          can reprocess the messages therein. Manually browsing all the queues (more than 50 queues) from each of the production servers (6 in our application) i a very time consuming process and often leads to human error. Therefore automation of the
+          same like developing an automated script which will send Backout Message Queue status updates to the support team periodically with the queue depth of each MQ will increase productivity of the team and reduce chances of error.</p>
+
+        <h2 id="action-point">Action point:</h2>
+        <p>The Backout MQ reporting includes the daily reporting of current queue depth of the GCSS MQ Backout queues, where an email is sent to the client with the following details: • Production node name • Backout queue name • Current queue depth This
+          is generally done by Production support team member by manually parsing through the GCSS Queue Managers in IBM WebSphere MQ and noting down the queue depth of the Backout queues individually.</p>
+
+        <p>So the action point is that automated email updates of current Backout Message Queue report of the application Message Queues (MQ) to be sent to designated team members at frequent intervals throughout the day, for the purpose of proactive monitoring
+          and action taking.</p>
+
+        <p>This includes the following details: • Server name • MQ name • Current Queue Depth • Latest Get time</p>
+
+        <p>Also a Dynamic Web Application can be developed using Java and JSP, that will generate this report on a single mouse click.</p>
+
+        <h2 id="value-and-benefits">Value and benefits:</h2>
+
+        <p>Both client and IBM benefit with this implemention. Without frequent message processing, messages remain un attended and can lead to information loss. So it is recommend that we proactively and frequently make sure that no messages remain unprocessed
+          at the application end. Best practice is automate the Backout MQ Reporting and develop a solution that will send status report of the MQs via email notification to the designated team members at equal intervals throughout the day. This will
+          give the an upper hand in proactively making sure that all messages are processed in the application.</p>
+
+        <h2 id="implementation">Implementation:</h2>
+
+        <p>Shell script has been developed and put as cron job in production server.</p>
+
+      </section>
+
+    </div>
+
+    <footer>
+      <h3>&copy; 2018 <a href="https://likarajo.github.io" target="_blank">likarajo</a></h3>
+    </footer>
+
+  </div>
+
+</body>
+
+</html>
